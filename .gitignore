@@ -1,0 +1,4 @@
+# Virtualenv
+venv
+app.db
+db_repository
