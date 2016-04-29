@@ -1,5 +1,5 @@
 import datetime
-from flask import render_template, flash, redirect, url_for, session, request
+from flask import render_template, jsonify, flash, redirect, url_for, session, request
 from app import app, db
 from .forms import LoginForm
 from .models import User, Todo
@@ -57,16 +57,14 @@ def add_todo():
 	db.session.commit()
 	return redirect(url_for('show_todos'))
 
-@app.route('/update', methods=['POST'])
-def update_todo(sesh_id):
-	if not session.get('logged_in'):
-		abort(401)
-	sesh_update_id = sesh_id
-	post = Todo.query.get(sesh_update_id)
-	if post.is_done == 0:
-		post.is_done = 1
+@app.route('/_cross_todo')
+def cross_todo():
+	a = request.args.get('a', 0, type=int)
+	post = Todo.query.get(a)
+	if post.is_done == 1:
+		post.is_done=0
 	else:
-		post.is_done = 0
-	
-	session['update'] = 0
-
+		post.is_done=1
+	db.session.commit()
+	a=0
+	return jsonify(result=a)

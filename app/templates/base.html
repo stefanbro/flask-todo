@@ -5,9 +5,28 @@
 		{% else %}
 		<title> Welcome to the todo thing </title>
 		{% endif %}
+	
+	<style>
+
+		.overlined{
+			text-decoration: line-through;
+		}
+
+		.normal{
+			text-decoration: overline;
+		}
+
+	</style>
+
 	</head>
 
 	<body>
+<script type="text/javascript"
+  src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript">
+	    var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+		    </script>
+
 		<div> Todo app <a href="/index">Home</a>
 			{% if session.logged_in %}
 				<a href='/logout'> Log me out </a>

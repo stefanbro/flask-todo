@@ -3,9 +3,29 @@
 {% extends 'base.html' %}
 
 {% block content %}
-	
+
 {% if session.logged_in %}
 
+<script type="text/javascript">
+$(function() {
+
+	var cross_todo = function(e) {
+
+		$.getJSON($SCRIPT_ROOT + '/_cross_todo', {
+			a : $(this).attr('name')
+		}, function(data) {
+		console.log(data);
+		$(this).removeClass("normal");
+		console.log("class changed");
+		});
+	return false;
+	};
+	
+	$('p#todo').bind('click', cross_todo);
+		
+});
+
+</script>
 <form action="{{ url_for('add_todo') }}" method='post'>
 <input type=text name=todo>
 <input type=submit value=post>
@@ -14,10 +34,10 @@
 {% for todo in uname.todos %}
 
 	{% if todo.is_done == 1 %}
-		<p action="{{ }}" > {{ todo.body }} </p>
+		<p id="todo" class="overlined" name='{{ todo.id }}'> {{ todo.body }} </p>
 	
 	{% else %}
-		<p action="{{ }}"> <strong> {{ todo.body }} </strong> </p>	
+		<p id="todo" name='{{ todo.id }}'> <strong> {{ todo.body }} </strong> </p>	
 	
 	{% endif %}
 
