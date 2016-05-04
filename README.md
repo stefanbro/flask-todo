@@ -4,6 +4,8 @@ A todo app written in python's flask.
 > NOTE: THE APP IS STILL IN DEVELOPMENT AND NOT WORKING PROPETLY, PLEASE WAIT UNTIL
 >THIS MESSAGE IS REMOVED BEFORE USING IT.
 
+> Currently it needs registration implemented, and updated security and validation.
+
 It's very simple, did it to practice my skill. It's a good thing to study if you are a beginner wanting to learn flask. You may not use this code commercially before contacting me (as if someone would use it).
 
 ### Version
