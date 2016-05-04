@@ -46,3 +46,5 @@ I feel like the rest is self-explanatory. Huge thanks to [Miguel Grinberg](https
  - Add form validation (consider wtforms)
  - Improve security
  - Improve design a bit more
+ - Make registration work
+
