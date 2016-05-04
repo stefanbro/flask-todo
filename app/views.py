@@ -59,6 +59,8 @@ def add_todo():
 
 @app.route('/_cross_todo')
 def cross_todo():
+	if not session.get('logged_in'):
+		abort(401)
 	a = request.args.get('a', 0, type=int)
 	post = Todo.query.get(a)
 	if post.is_done == 1:
@@ -68,3 +70,13 @@ def cross_todo():
 	db.session.commit()
 	a=0
 	return jsonify(result=a)
+
+@app.route('/clear_todos')
+def clear_todos():
+	if not session.get('logged_in'):
+		abort(401)
+	sesh_user = session['uname']
+	uname = User.query.filter_by(username=sesh_user).first()
+	uname.todos.filter_by(is_done=1).delete()
+	db.session.commit()
+	return redirect(url_for('show_todos'))

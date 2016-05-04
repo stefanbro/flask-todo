@@ -43,6 +43,6 @@ I feel like the rest is self-explanatory. Huge thanks to [Miguel Grinberg](https
 
 ### Todos
 
- - Add cross-off function
-  - Manage user registration/login safely
-   - Stylize the app
+ - Add form validation (consider wtforms)
+ - Improve security
+ - Improve design a bit more
