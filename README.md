@@ -1,15 +1,15 @@
 # Flask-todo
 A todo app written in python's flask. 
 
-> NOTE: THE APP IS STILL IN DEVELOPMENT AND NOT WORKING PROPETLY, PLEASE WAIT UNTIL
->THIS MESSAGE IS REMOVED BEFORE USING IT.
+> This app is under MIT licence, so you can use/tweak it as much as you want. However be warned 
+>that it's not secured, which means you haev to implement password encryption, 
+>protect authentication etc. 
 
-> Currently it needs registration implemented, and updated security and validation.
-
-It's very simple, did it to practice my skill. It's a good thing to study if you are a beginner wanting to learn flask. You may not use this code commercially before contacting me (as if someone would use it).
+This ap is mainly for learning purposes. Both to practice my effectiveness and for beginners 
+to learn from example
 
 ### Version
-Beta 0.1
+1.0
 
 ### Installation
 
@@ -29,13 +29,14 @@ $ python db_create.py
 Use this command every time you make change in *app/models.py*:
 ```sh
 $ python db_update.py
+$ python db_migrate.py
 ```
 
 To run the app after you've created a database use:
 ```sh
 $ python run.py
 ```
-And you are ready to go. 
+And you are ready to go. Just go to 127.0.0.1:5000
 
 
 I feel like the rest is self-explanatory. Huge thanks to [Miguel Grinberg](https://github.com/miguelgrinberg) for database scripts.
@@ -45,8 +46,4 @@ I feel like the rest is self-explanatory. Huge thanks to [Miguel Grinberg](https
 
 ### Todos
 
- - Add form validation (consider wtforms)
- - Improve security
- - Improve design a bit more
- - Make registration work
-
+ - Heavily comment the code

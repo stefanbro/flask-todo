@@ -3,27 +3,22 @@
 
     <div class="jumbotron" id="fullscreen">
       <div class="container" id="container">
-        <h1>Hello, world!</h1>
-        <p>This is a template for a simple marketing or informational 
-website. It includes a large callout called a jumbotron and three 
-supporting pieces of content. Use it as a starting point to create 
-something more unique.</p>
-        <p><a class="btn btn-primary btn-lg" id="discover" href="#" role="button">Learn more »</a></p>
+        <h1>Get productive</h1>
+        <p>Hey! This is a simple app with very basic elements that shows you how to make a todo app in flask. Nothing much</p>
+        <p><a class="btn btn-primary btn-lg" id="discover" href="#" role="button">Discover</a></p>
       </div>
     </div>
 
 <div clsas="container" id="body_cont">
-	<h1>Hello, world!</h1>
-   	<p>This is a template for a simple marketing or informational 
-website. It includes a large callout called a jumbotron and three 
-supporting pieces of content. Use it as a starting point to create 
-something more unique.</p>
+	<br> <br>
+   	<p>Here you can register, or if you already have account you can hit upper right link to get to the login page.</p>
 	
 	{% if session.logged_in %}
 	<a href="{{url_for('show_todos')}}">Go to todos</a>
 	{% else %}
 	<form action="{{ url_for('user_register') }}" method='POST' >
-	<div class="centered reg_form">
+<input type=hidden name=_csrf_token value="{{ csrf_token() }}">	
+		<div class="centered reg_form">
 		<h2>REGISTER</h2>
 		{% if error != None %}
 		<p> {{ error }}</p>

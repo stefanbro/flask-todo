@@ -1,10 +1,27 @@
 import datetime
-from flask import render_template, jsonify, flash, redirect, url_for, session, request
+import base64
+import os
+from flask import render_template, jsonify, flash, redirect, url_for, session, request, abort
 from app import app, db
 from .forms import LoginForm, RegisterForm
 from .models import User, Todo
 
-general_uname = None
+@app.before_request
+def csrf_protect():
+	if request.method == "POST":
+		token = session.pop('_csrf_token', None)
+		if not token or token != request.form.get('_csrf_token'):
+			abort(403)
+
+def generate_csrf_token():
+	if '_csrf_token' not in session:
+		session['_csrf_token'] = some_random_string()
+	return session['_csrf_token']
+
+def some_random_string():
+    return base64.urlsafe_b64encode(os.urandom(32))
+
+app.jinja_env.globals['csrf_token'] = generate_csrf_token
 
 @app.route('/')
 @app.route('/index')
@@ -51,14 +68,10 @@ def user_register():
 	elif req_password != req_password_again:
 		return render_template('index.html', error=error, form=form)
 	else:
-		if form.validate():
-			new_user = User(username=req_username, email=req_email, password=req_password_again)
-			db.session.add(new_user)
-			db.session.commit()
-			return redirect(url_for('login'))
-		else:
-			error = 'Try again'
-			return render_template('index.html', error=error, form=form)
+		new_user = User(username=req_username, email=req_email, password=req_password_again)
+		db.session.add(new_user)
+		db.session.commit()
+		return redirect(url_for('login'))
 
 @app.route('/show_todos')
 def show_todos():

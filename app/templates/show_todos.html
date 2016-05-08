@@ -4,6 +4,8 @@
 <div class="container">
 {% if session.logged_in %}
 
+	<a href="{{ url_for('logout') }}">Logout</a>
+	
 <div class="centered form_container">
 <form action="{{ url_for('add_todo') }}" method='post'>
 <input type=text name=todo id="todo-field" class="form-control" placeholder="Type todo and hit ENTER">
